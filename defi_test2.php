@@ -3,10 +3,10 @@ session_start();
 
 // Questions vrai/faux basées sur le texte Collectivités
 $questions = [
-    1 => ["q" => "Prolonger la durée de vie des équipements réduit les déchets numériques.", "answer" => "vrai"],
-    2 => ["q" => "Les collectivités doivent ignorer les initiatives locales.", "answer" => "faux"],
+    1 => ["q" => "Les collectivités doivent ignorer les initiatives locales.", "answer" => "faux"],
+    2 => ["q" => "Prolonger la durée de vie des équipements réduit les déchets numériques.", "answer" => "vrai"],
     3 => ["q" => "Linux et les logiciels libres renforcent la souveraineté numérique.", "answer" => "vrai"],
-    4 => ["q" => "PrimTux est recommandé pour les écoles secondaires.", "answer" => "faux"], // c'est pour primaires
+    4 => ["q" => "PrimTux est recommandé pour les écoles secondaires.", "answer" => "faux"], 
     5 => ["q" => "Les élèves deviennent acteurs d’une transformation numérique responsable.", "answer" => "vrai"],
 ];
 
