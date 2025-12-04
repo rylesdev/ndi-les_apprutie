@@ -3,19 +3,22 @@
 session_start();
 $message = '';
 $defi_id = $_GET['id'];
-$bonne_reponse = [1 => ['b', 'c']]; // bonnes réponses pour défi 1
+$bonne_reponse = ['b', 'c']; // bonnes réponses pour défi 1
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $reponse = $_POST['qcm'] ?? [];
     sort($reponse);
-    sort($bonne_reponse[$defi_id]);
-    $correct = ($reponse === $bonne_reponse[$defi_id]);
+    sort($bonne_reponse);
+    $correct = ($reponse === $bonne_reponse);
     if ($correct) {
         $_SESSION['defis'][$defi_id] = true;
         $message = 'bravo bonne reponse';
     } else {
         $message = 'mauvaise réponse';
     }
+}
+if ($_SESSION['defis'][$defi_id]) {
+    echo "<p><a href='index.php'>Retour aux cartes</a></p>";
 }
 ?>
 <!doctype html>
@@ -62,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <p><?php echo $message; ?></p>
 
-    <p><a href="index.php">Retour aux cartes</a></p>
+    <!--<p><a href="index.php">Retour aux cartes</a></p>-->
 </body>
 
 </html>
