@@ -3,14 +3,17 @@
 session_start();
 $message = '';
 $defi_id = $_GET['id'];
-$bonne_reponse = [1 => 'b', 2 => 'c'];
+$bonne_reponse = [1 => ['b', 'c']]; // bonnes réponses pour défi 1
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $reponse = $_POST['qcmi'];
-    $_SESSION['defis'][$id] = $reponse == $bonne_repon;
-    if ($_SESSION[''][$id]) {
+    $reponse = $_POST['qcm'] ?? [];
+    sort($reponse);
+    sort($bonne_reponse[$defi_id]);
+    $correct = ($reponse === $bonne_reponse[$defi_id]);
+    if ($correct) {
+        $_SESSION['defis'][$defi_id] = true;
         $message = 'bravo bonne reponse';
-    }
-    else {
+    } else {
         $message = 'mauvaise réponse';
     }
 }
@@ -47,10 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
     <form method="post">
-        <label><input type="radio" name="qcm" value="a"> Faux</label><br>
-        <label><input type="radio" name="qcm" value="b"> Vrai</label><br>
-        <label><input type="radio" name="qcm" value="c"> Vrai</label><br>
-        <label><input type="radio" name="qcm" value="d"> Faux</label><br>
+        <label><input type="checkbox" name="qcm[]" value="a"> Faux</label><br>
+        <label><input type="checkbox" name="qcm[]" value="b"> Vrai</label><br>
+        <label><input type="checkbox" name="qcm[]" value="c"> Vrai</label><br>
+        <label><input type="checkbox" name="qcm[]" value="d"> Faux</label><br>
 
 
         <input type="submit" value="Valider">
@@ -58,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
     <p><?php echo $message; ?></p>
-
 
     <p><a href="index.php">Retour aux cartes</a></p>
 </body>
