@@ -37,6 +37,7 @@ h1 {
     width: 100%;
 }
 
+/* --- Styles pour la grille (Index) --- */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -164,4 +165,89 @@ h1 {
     color: #999;
     margin-top: 10px;
     opacity: 0.7;
+}
+
+/* --- Styles spécifiques pour defis2.php --- */
+
+/* Centre le formulaire et limite sa largeur pour la lisibilité */
+form {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Style "carte" pour chaque question */
+.question {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--primary);
+    transition: transform 0.2s ease;
+}
+
+.question:hover {
+    transform: translateY(-2px);
+}
+
+/* Le texte de la question */
+.question p {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+/* Les labels (Vrai/Faux) */
+.question label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px 0;
+}
+
+/* Personnalisation des boutons radio */
+.question input[type="radio"] {
+    margin-right: 8px;
+    accent-color: var(--primary);
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Zone de succès (quand tout est bon) */
+.success {
+    background-color: #e8f8f5;
+    color: var(--success);
+    border: 2px solid var(--success);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.success p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Animation simple d'apparition */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bouton de validation pour le formulaire */
+button.btn-action {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 30px auto 0;
+    font-size: 1.1rem;
+    cursor: pointer;
 }
