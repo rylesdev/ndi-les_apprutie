@@ -37,7 +37,7 @@ if (isset($_POST["reset"])) {
     ];
     $activeLetter = null;
     $_GET["select_number"] = null;
-	header("Location: index.php");
+	header("Location: defi_test2.php");
 }
 
 // --- Gestion des clics sur une lettre ---
