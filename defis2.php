@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($correct) {
         $all_correct = true;
-        // Marquer le défi comme terminé
         $_SESSION['defis'][2] = true;
     }
 }
@@ -42,27 +41,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container">
     <h1>Défi 2 : Vrai / Faux</h1>
 
-    <?php if (!$all_correct): ?>
-        <form method="post">
-            <?php foreach ($questions as $id => $q): ?>
-                <div class="question">
-                    <p><?php echo htmlspecialchars($q['q']); ?></p>
-                    <label>
-                        <input type="radio" name="answers[<?php echo $id; ?>]" value="vrai" required> Vrai
-                    </label>
-                    <label>
-                        <input type="radio" name="answers[<?php echo $id; ?>]" value="faux" required> Faux
-                    </label>
-                </div>
-            <?php endforeach; ?>
+    <form method="post">
+        <?php foreach ($questions as $id => $q): ?>
+            <div class="question">
+                <p><?php echo htmlspecialchars($q['q']); ?></p>
+                <label>
+                    <input type="radio" name="answers[<?php echo $id; ?>]" value="vrai" required> Vrai
+                </label>
+                <label>
+                    <input type="radio" name="answers[<?php echo $id; ?>]" value="faux" required> Faux
+                </label>
+            </div>
+        <?php endforeach; ?>
+
+        <?php if ($all_correct): ?>
+            <div class="success">
+                <p>Bravo ! Toutes les réponses sont correctes.</p>
+                <a href="index.php" class="btn-action">Retour à la page principale</a>
+            </div>
+        <?php else: ?>
             <button type="submit" class="btn-action">Valider</button>
-        </form>
-    <?php else: ?>
-        <div class="success">
-            <p>Bravo ! Toutes les réponses sont correctes.</p>
-            <a href="index.php" class="btn-action">Retour à la page principale</a>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
+    </form>
 </div>
 </body>
 </html>
