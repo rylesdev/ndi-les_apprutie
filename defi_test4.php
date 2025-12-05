@@ -1,31 +1,38 @@
 
 <?php
 session_start();
-$compteurjustes = 0; 
+
+$defi_id = 4; 
+$compteurjustes = 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $justerecyclable = [1,2,5,7,8]; 
     $justenonrecyclable = [3,4,6,9,10]; 
 
-    $reponse_oui = $_POST['oui'] ; 
-    $reponse_non = $_POST['non'] ;
+    $reponse_oui = $_POST['oui'] ?? []; 
+    $reponse_non = $_POST['non'] ?? []; 
 
-    
-    for ($i = 0; $i < count($justerecyclable); $i++) {
-    if (in_array($justerecyclable[$i], $reponse_oui)) {
-        $compteurjustes++;
+    foreach ($justerecyclable as $val) {
+        if (in_array($val, $reponse_oui)) $compteurjustes++;
     }
-}
 
-
-    for ($i = 0; $i < count($justenonrecyclable); $i++) {
-    if (in_array($justenonrecyclable[$i], $reponse_non)) {
-        $compteurjustes++;
+    foreach ($justenonrecyclable as $val) {
+        if (in_array($val, $reponse_non)) $compteurjustes++;
     }
-}
 
-
-    echo "<script> alert( 'Vous avez $compteurjustes réponses correctes sur 10.');window.location.href = 'index.php';</script>";
+    if ($compteurjustes == 10) {
+        $_SESSION['defis'][$defi_id] = true; //
+        echo "<script>
+            alert('Vous avez $compteurjustes réponses correctes sur 10.');
+            window.location.href = 'index.php';
+        </script>";
+    } else {
+        echo "<script>
+            alert('Ré-essayez');
+            window.location.href = 'defi_test4.php';
+        </script>";
+    }
 }
 ?>
 
