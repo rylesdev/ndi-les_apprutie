@@ -1,31 +1,39 @@
 <?php
-$compteurjustes = 0; 
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $justerecyclable = [1,2,5,7,8]; 
     $justenonrecyclable = [3,4,6,9,10]; 
 
-    $reponse_oui = $_POST['oui'] ; 
-    $reponse_non = $_POST['non'] ;
+    $reponse_oui = $_POST['oui'] ?? [];
+    $reponse_non = $_POST['non'] ?? [];
 
-    
-    for ($i = 0; $i < count($justerecyclable); $i++) {
-    if (in_array($justerecyclable[$i], $reponse_oui)) {
-        $compteurjustes++;
+    $compteurjustes = 0;
+
+    foreach ($justerecyclable as $n) {
+        if (in_array($n, $reponse_oui)) $compteurjustes++;
     }
-}
 
-
-    for ($i = 0; $i < count($justenonrecyclable); $i++) {
-    if (in_array($justenonrecyclable[$i], $reponse_oui)) {
-        $compteurjustes++;
+    foreach ($justenonrecyclable as $n) {
+        if (in_array($n, $reponse_non)) $compteurjustes++;
     }
-}
 
+    if ($compteurjustes == 10) {
+        // Marquer le défi 4 comme terminé
+        $_SESSION['defis'][4] = true;
 
-    echo "<script> alert( 'Vous avez $compteurjustes réponses correctes sur 10.');window.location.href = 'index.php';</script>";
+        // Retour à l'accueil
+        header("Location: index.php");
+        exit;
+    } else {
+        // Réessayer le test
+        header("Location: defi_test4.php");
+        exit;
+    }
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -36,6 +44,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+      body {
+        background-color : #776D8F;
+      }
+
+      h1{
+        color : #CAC8EE;
+        margin : 10px;
+      }
+
+      h3{
+        color : #ECEBF9;
+        margin : 0px;
+        font-style : italic;
+      }
+
+      figcaption{
+        color : #D9D7E0;
+        font-size : 15px;
+      }
+
+      h4{
+        color : #CAC8EE;
+        text-decoration : underline;
+      }
+
+      label{
+        color : #c0bbcfff;
+      }
+
+      .btn-action{
+        color : #A99DC7;
+        border : 1px solid #A99DC7;
+      }
+
+      .btn-action:hover {
+        background-color: #A99DC7;
+        color : white;
+      }
+
+      
+    </style>
 </head>
 
 <body>
@@ -61,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <div>
     <figure>
-     <img src="Images/remotecontrolle.jpg" alt="Télécommande" width = 175>
+     <img src="Images/remotecontrolle.jpg?v=2" alt="Télécommande" width = 175>
     <figcaption>Télécommande<br> n°3 </br></figcaption>
 </figure>
   </div>
