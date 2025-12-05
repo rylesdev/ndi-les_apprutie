@@ -94,7 +94,7 @@
         }
 
         if (count === 10) {
-            document.location.href="/index.php";
+            document.location.href="../ndi-les_apprutie/defi_test2.php?id=2";
         }
 
     }
