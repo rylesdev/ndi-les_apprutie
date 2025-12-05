@@ -11,20 +11,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     for ($i = 0; $i < count($justerecyclable); $i++) {
     if (in_array($justerecyclable[$i], $reponse_oui)) {
-        $repjustes++;
+        $compteurjustes++;
     }
 }
 
 
-    // Vérifier les réponses "non"
     for ($i = 0; $i < count($justenonrecyclable); $i++) {
     if (in_array($justenonrecyclable[$i], $reponse_oui)) {
-        $repjustes++;
+        $compteurjustes++;
     }
 }
 
 
-    echo "<p>Vous avez $compteurjustes réponses correctes sur 10.</p>";
+    echo "<script> alert( 'Vous avez $compteurjustes réponses correctes sur 10.');window.location.href = 'index.php';</script>";
 }
 ?>
 
