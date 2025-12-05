@@ -12,6 +12,7 @@ $solutions = [
     "C" => "3"
 ];
 
+// A implémenter : ouvre le hidden snake
 $hidden = [
     "A" => "3",
     "B" => "2",
@@ -20,6 +21,9 @@ $hidden = [
 
 // --- Récupération de l'état actuel (associations faites) ---
 session_start();
+
+$defi_id = 2;
+
 if (!isset($_SESSION["pairs"])) {
     $_SESSION["pairs"] = [
         "A" => null,
@@ -56,6 +60,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     foreach ($_SESSION["pairs"] as $letter => $num) {
         $results[$letter] = ($num === $solutions[$letter]);
     }
+	if ($results == $solutions) {
+        $_SESSION['defis'][$defi_id] = true;
+        echo 'bravo bonne reponse';
+	} else {
+		echo 'mauvaise réponse';
+	}
+}
+if ($_SESSION['defis'][$defi_id]) {
+    echo "<p><a href='index.php'>Retour aux cartes</a></p>";
 }
 ?>
 <!DOCTYPE html>
