@@ -37,9 +37,10 @@ h1 {
     width: 100%;
 }
 
+/* --- Styles pour la grille (Index) --- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    grid-template-columns: repeat(2, 1fr); 
     gap: 30px;
     justify-items: center; /* centre les images dans chaque colonne */
 }
@@ -61,7 +62,7 @@ h1 {
 }
 
 .flip-card {
-    height: 220px;
+    height: 215px;
     width: 100%;
 }
 
@@ -196,4 +197,5 @@ figure figcaption {
 .button {
     color : #5C8ECA;
     text-align : center;
+
 }
