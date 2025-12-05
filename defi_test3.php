@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Questions vrai/faux basées sur le texte Collectivités
 $questions = [
     1 => ["q" => "Les collectivités doivent ignorer les initiatives locales.", "answer" => "faux"],
     2 => ["q" => "Prolonger la durée de vie des équipements réduit les déchets numériques.", "answer" => "vrai"],
@@ -10,7 +9,6 @@ $questions = [
     5 => ["q" => "Les élèves deviennent acteurs d’une transformation numérique responsable.", "answer" => "vrai"],
 ];
 
-// Vérification des réponses
 $all_correct = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_answers = $_POST['answers'] ?? [];
