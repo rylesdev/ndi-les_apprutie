@@ -47,12 +47,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="style.css">
 
     <style>
-     .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  justify-content: center;
-  gap: 30px;
+    /* ----- Grille des images (5 par ligne) ----- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
 }
+
+/* Centrer les figures */
+.grid figure {
+    text-align: center;
+}
+
+/* ----- Colonnes des catégories ----- */
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.column {
+    width: 48%; /* Deux colonnes côte à côte */
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Titres des colonnes */
+.col
+
 
     </style>
 </head>
