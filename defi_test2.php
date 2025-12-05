@@ -1,47 +1,105 @@
 <?php
+
+function shuffle_assoc($array) {
+    $keys = array_keys($array);
+    shuffle($keys);
+    $shuffled = [];
+    foreach ($keys as $key) {
+        $shuffled[$key] = $array[$key];
+    }
+    return $shuffled;
+}
+
 // --- Paramètres du jeu ---
 $colors = [
-    "A" => "#ff9999",
-    "B" => "#99ccff",
-    "C" => "#99ff99"
+    "Microsoft Windows" => "#ff9999",
+    "Microsoft Office" => "#99ccff",
+    "Adobe Photoshop" => "#99ff99",
+    "Adobe Premiere Pro" => "#ffcc99",
+    "Adobe Audition" => "#cc99ff",
+    "Microsoft Visual Studio" => "#ffff99",
+    "WinRAR" => "#ccccff",
+    "Google Chrome" => "#ccff99",
+    "VMware Workstation" => "#ffeb99",
+    "Spotify" => "#99ffff"
 ];
 
 $solutions = [
-    "A" => "1",
-    "B" => "2",
-    "C" => "3"
+    "Microsoft Windows"        => "Linux",
+    "Microsoft Office"         => "LibreOffice",
+    "Adobe Photoshop"          => "GIMP",
+    "Adobe Premiere Pro"       => "Kdenlive",
+    "Adobe Audition"           => "Audacity",
+    "Microsoft Visual Studio"  => "Eclipse",
+    "WinRAR"                   => "7-Zip",
+    "Google Chrome"            => "Firefox",
+    "VMware Workstation"       => "VirtualBox",
+    "Spotify"                  => "Jellyfin"
 ];
 
-// A implémenter : ouvre le hidden snake
-$hidden = [
-    "A" => "3",
-    "B" => "2",
-    "C" => "1"
+$hidden_solutions = [
+    "Microsoft Windows"        => "LibreOffice",
+    "Microsoft Office"         => "Linux",
+    "Adobe Photoshop"          => "Audacity",
+    "Adobe Premiere Pro"       => "7-Zip",
+    "Adobe Audition"           => "GIMP",
+    "Microsoft Visual Studio"  => "Jellyfin",
+    "WinRAR"                   => "Kdenlive",
+    "Google Chrome"            => "VirtualBox",
+    "VMware Workstation"       => "Firefox",
+    "Spotify"                  => "Eclipse"
 ];
 
 // --- Récupération de l'état actuel (associations faites) ---
 session_start();
 
-$defi_id = 2;
+// Quand on charge le défi
+if (!isset($_SESSION['shuffled_colors'])) {
+    $_SESSION['shuffled_colors'] = shuffle_assoc($colors);
+}
+
+if (!isset($_SESSION['shuffled_solutions'])) {
+    $_SESSION['shuffled_solutions'] = shuffle_assoc($solutions);
+}
+
+// On utilise les versions mélangées stockées
+$colors = $_SESSION['shuffled_colors'];
+$solutions = $_SESSION['shuffled_solutions'];
+
+$defi_id = $_GET['id'];
 
 if (!isset($_SESSION["pairs"])) {
     $_SESSION["pairs"] = [
-        "A" => null,
-        "B" => null,
-        "C" => null
+        "Microsoft Windows" => null,
+        "Microsoft Office" => null,
+        "Adobe Photoshop" => null,
+        "Adobe Premiere Pro" => null,
+        "Adobe Audition" => null,
+        "Microsoft Visual Studio" => null,
+        "WinRAR" => null,
+        "Google Chrome" => null,
+        "VMware Workstation" => null,
+        "Spotify" => null
     ];
 }
 
 // Effacer les associations
 if (isset($_POST["reset"])) {
     $_SESSION["pairs"] = [
-        "A" => null,
-        "B" => null,
-        "C" => null
+        "Microsoft Windows" => null,
+        "Microsoft Office" => null,
+        "Adobe Photoshop" => null,
+        "Adobe Premiere Pro" => null,
+        "Adobe Audition" => null,
+        "Microsoft Visual Studio" => null,
+        "WinRAR" => null,
+        "Google Chrome" => null,
+        "VMware Workstation" => null,
+        "Spotify" => null
     ];
     $activeLetter = null;
     $_GET["select_number"] = null;
-	header("Location: defi_test2.php");
+    header("Location: defi_test2.php?id=2");
 }
 
 // --- Gestion des clics sur une lettre ---
@@ -58,17 +116,20 @@ if (isset($_GET["select_number"]) && isset($_GET["active"])) {
 $results = [];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     foreach ($_SESSION["pairs"] as $letter => $num) {
-        $results[$letter] = ($num === $solutions[$letter]);
+        $results[$letter] = $num;
     }
-	if ($results == $solutions) {
+    if ($results == $solutions) {
         $_SESSION['defis'][$defi_id] = true;
-        echo 'bravo bonne reponse';
-	} else {
-		echo 'mauvaise réponse';
+        echo "Bien joué ! C'est la bonne réponse !";
+    } elseif ($results == $hidden_solutions) {
+        header("Location: snake.php");
 	}
+	else {
+        echo "Hmm, réessaie...";
+    }
 }
 if ($_SESSION['defis'][$defi_id]) {
-    echo "<p><a href='index.php'>Retour aux cartes</a></p>";
+    echo "<p><a href='../ndi-les_apprutie/index.php'>Retour aux cartes</a></p>";
 }
 ?>
 <!DOCTYPE html>
@@ -85,10 +146,10 @@ if ($_SESSION['defis'][$defi_id]) {
             margin-top: 40px;
         }
 
-		a {
-			text-decoration: none;
-			color: black;
-		}
+        a {
+            text-decoration: none;
+            color: black;
+        }
 
         .container{
             display: flex;
@@ -107,7 +168,7 @@ if ($_SESSION['defis'][$defi_id]) {
             cursor: pointer;
             text-align: center;
             font-size: 20px;
-            width: 60px;
+            width: 210px;
             border-radius: 4px;
         }
 
@@ -127,7 +188,7 @@ if ($_SESSION['defis'][$defi_id]) {
 
 <body>
 
-<h1>Associer les lettres aux chiffres</h1>
+<h1>Associer le logiciel propriétaire à son équivalent libre</h1>
 
 <div class="container">
 
@@ -137,8 +198,9 @@ if ($_SESSION['defis'][$defi_id]) {
             <?php
             $isActive = ($activeLetter === $letter);
             $url = "?select_letter=$letter";
+            $id = "id=" . $_GET['id'];
             ?>
-			<a href="<?= $url ?>"
+			<a href="<?= $url . '&' . $id?>"
 			   class="item <?= $isActive ? 'active' : '' ?>"
 			   style="background: <?= $color ?>;">
                 <?= $letter ?>
@@ -148,29 +210,29 @@ if ($_SESSION['defis'][$defi_id]) {
 
 	<!-- COLONNE CHIFFRES -->
 	<div class="column">
-        <?php for ($n = 1; $n <= count($solutions); $n++): ?>
+        <?php foreach ($solutions as $k => $v): ?>
             <?php
             $associatedColor = null;
             foreach ($_SESSION["pairs"] as $letter => $value) {
-                if ($value == $n) {
+                if ($value == $v) {
                     $associatedColor = $colors[$letter];
                 }
             }
 
             // Clic sur numéro seulement si une lettre active existe
             if ($activeLetter) {
-                $url = "?active=$activeLetter&select_number=$n";
+                $url = "?active=$activeLetter&select_number=$v" . '&' . $id;
             } else {
-                $url = "#";
+                $url = "?" . $id;
             }
             ?>
 
 			<a href="<?= $activeLetter ? $url : '#' ?>"
 			   class="item <?= !$activeLetter ? 'disabled' : '' ?>"
 			   style="background: <?= $associatedColor ?>;">
-                <?= $n ?>
+                <?= $v ?>
 			</a>
-        <?php endfor; ?>
+        <?php endforeach; ?>
 	</div>
 
 </div>
@@ -187,7 +249,7 @@ if ($_SESSION['defis'][$defi_id]) {
 	<h2>Résultats :</h2>
     <?php foreach ($results as $letter => $ok): ?>
 		<p>
-			Lettre <strong><?= $letter ?></strong> :
+			<strong><?= $letter ?></strong> :
             <?php if ($ok): ?>
 				<span class="correct">Correct ✔️</span>
             <?php else: ?>
