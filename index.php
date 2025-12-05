@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_abort();
 // Initialisation des défis
 if (!isset($_SESSION['defis'])) {
     $_SESSION['defis'] = [1 => false, 2 => false, 3 => false, 4 => false];
@@ -55,7 +56,7 @@ $cards = [
                 </div>
 
                 <div class="card-footer">
-                    <a href="defis<?php echo $c['id']; ?>.php" class="btn-action">
+                    <a href="defi_test<?php echo $c['id']; ?>.php?id=<?php echo $c['id']; ?>" class="btn-action">
                         <?php echo $c['is_done'] ? 'Revoir le défi' : 'Lancer le défi'; ?>
                     </a>
                 </div>
