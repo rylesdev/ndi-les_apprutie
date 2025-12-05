@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($correct) {
         $all_correct = true;
-        $_SESSION['defis'][2] = true;
+        $_SESSION['defis'][3] = true;
     }
 }
 ?>
