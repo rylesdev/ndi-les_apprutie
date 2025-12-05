@@ -40,7 +40,7 @@ h1 {
 /* --- Styles pour la grille (Index) --- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, 1fr); 
     gap: 30px;
 }
 
@@ -60,7 +60,7 @@ h1 {
 }
 
 .flip-card {
-    height: 220px;
+    height: 215px;
     width: 100%;
 }
 
