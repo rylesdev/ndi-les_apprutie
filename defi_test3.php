@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <div class="container">
-    <h1>Défi 2 : Vrai / Faux</h1>
+    <h1>Défi 3 : Vrai / Faux</h1>
 
     <form method="post">
         <?php foreach ($questions as $id => $q): ?>
