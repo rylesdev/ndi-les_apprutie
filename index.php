@@ -30,7 +30,12 @@ $cards = [
 
 <body>
 <div class="container">
-    <h1>🚀 Tableau de Bord des Défis</h1>
+
+	<div style="text-align: center; padding-bottom: 30px">
+		<img src="https://nird.forge.apps.education.fr/img/logo+text206px.png"">
+	</div>
+
+    <h1>Comment un établissement peut réduire ses dépendances numériques et entrer dans la démarche NIRD ?</h1>
 
     <div class="grid">
         <?php foreach ($cards as $c): ?>
