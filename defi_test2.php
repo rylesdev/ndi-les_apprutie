@@ -37,11 +37,17 @@ $solutions = [
     "Spotify"                  => "Jellyfin"
 ];
 
-// A implémenter : ouvre le hidden snake
-$hidden = [
-    "A" => "3",
-    "B" => "2",
-    "C" => "1"
+$hidden_solutions = [
+    "Microsoft Windows"        => "LibreOffice",
+    "Microsoft Office"         => "Linux",
+    "Adobe Photoshop"          => "Audacity",
+    "Adobe Premiere Pro"       => "7-Zip",
+    "Adobe Audition"           => "GIMP",
+    "Microsoft Visual Studio"  => "Jellyfin",
+    "WinRAR"                   => "Kdenlive",
+    "Google Chrome"            => "VirtualBox",
+    "VMware Workstation"       => "Firefox",
+    "Spotify"                  => "Eclipse"
 ];
 
 // --- Récupération de l'état actuel (associations faites) ---
@@ -110,17 +116,20 @@ if (isset($_GET["select_number"]) && isset($_GET["active"])) {
 $results = [];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     foreach ($_SESSION["pairs"] as $letter => $num) {
-        $results[$letter] = ($num === $solutions[$letter]);
+        $results[$letter] = $num;
     }
     if ($results == $solutions) {
         $_SESSION['defis'][$defi_id] = true;
-        echo 'bravo bonne reponse';
-    } else {
-        echo 'mauvaise réponse';
+        echo "Bien joué ! C'est la bonne réponse !";
+    } elseif ($results == $hidden_solutions) {
+        header("Location: snake.php");
+	}
+	else {
+        echo "Hmm, réessaie...";
     }
 }
 if ($_SESSION['defis'][$defi_id]) {
-    echo "<p><a href='index.php'>Retour aux cartes</a></p>";
+    echo "<p><a href='../ndi-les_apprutie/index.php'>Retour aux cartes</a></p>";
 }
 ?>
 <!DOCTYPE html>
