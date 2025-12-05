@@ -1,4 +1,6 @@
+
 <?php
+session_start();
 $compteurjustes = 0; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -17,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     for ($i = 0; $i < count($justenonrecyclable); $i++) {
-    if (in_array($justenonrecyclable[$i], $reponse_oui)) {
+    if (in_array($justenonrecyclable[$i], $reponse_non)) {
         $compteurjustes++;
     }
 }
@@ -36,6 +38,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+     .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  justify-content: center;
+  gap: 30px;
+}
+
+    </style>
 </head>
 
 <body>
@@ -61,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <div>
     <figure>
-     <img src="Images/remotecontrolle.jpg" alt="Télécommande" width = 175>
+     <img src="Images/remotecontrolle.jpg?=v2" alt="Télécommande" width = 175>
     <figcaption>Télécommande<br> n°3 </br></figcaption>
 </figure>
   </div>
