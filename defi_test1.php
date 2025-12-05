@@ -3,7 +3,7 @@
 session_start();
 $message = '';
 $defi_id = $_GET['id'];
-$bonne_reponse = ['A2', 'A3', 'B2', 'B3', 'C2', 'C3', 'D2', 'D3']; // bonnes réponses pour défi 1
+$bonne_reponse = ['A2', 'B1', 'C3', 'D2']; // bonnes réponses pour défi 1
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $reponsebis = $_POST['qcm'] ?? [];
@@ -95,7 +95,7 @@ if ($_SESSION['defis'][$defi_id]) {
         .qcm-grid label {
             background: none;
             border-radius: 8px;
-            font-size: 20px;
+            font-size: 15px;
             min-height: unset;
             box-shadow: none;
             border: none;
@@ -157,39 +157,39 @@ if ($_SESSION['defis'][$defi_id]) {
 
     <form method="post">
         <div class="qcm-block">
-            <div class="qcm-title">Question A : Choisissez les bonnes réponses</div>
+            <div class="qcm-title">Que signifie la démarche NIRD ?</div>
             <div class="qcm-grid">
-                <label><input type="checkbox" name="qcm[]" value="A1"> Faux</label>
-                <label><input type="checkbox" name="qcm[]" value="A2"> Vrai</label>
-                <label><input type="checkbox" name="qcm[]" value="A3"> Vrai</label>
-                <label><input type="checkbox" name="qcm[]" value="A4"> Faux</label>
+                <label><input type="checkbox" name="qcm[]" value="A1">A. Numérique Innovant Réservé au Développement</label>
+                <label><input type="checkbox" name="qcm[]" value="A2">B. Numérique Inclusif, Responsable et Durable</label>
+                <label><input type="checkbox" name="qcm[]" value="A3">C. Nouvelle Initiative pour la Réduction des Dépenses</label>
+                <label><input type="checkbox" name="qcm[]" value="A4">D. Numérique Institutionnel Réformé et Digitalisés</label>
             </div>
         </div>
         <div class="qcm-block">
-            <div class="qcm-title">Question B : Sélectionnez les affirmations vraies</div>
+            <div class="qcm-title">Quel outil de communication est proposé pour rejoindre la démarche ?</div>
             <div class="qcm-grid">
-                <label><input type="checkbox" name="qcm[]" value="B1"> Faux</label>
-                <label><input type="checkbox" name="qcm[]" value="B2"> Vrai</label>
-                <label><input type="checkbox" name="qcm[]" value="B3"> Vrai</label>
-                <label><input type="checkbox" name="qcm[]" value="B4"> Faux</label>
+                <label><input type="checkbox" name="qcm[]" value="B1">A. Tchap</label>
+                <label><input type="checkbox" name="qcm[]" value="B2">B. Instagram</label>
+                <label><input type="checkbox" name="qcm[]" value="B3">C. Discord</label>
+                <label><input type="checkbox" name="qcm[]" value="B4">D. Slack</label>
             </div>
         </div>
         <div class="qcm-block">
-            <div class="qcm-title">Question C : Cochez les bonnes cases</div>
+            <div class="qcm-title">Quel est l’un des trois piliers de la démarche NIRD ?</div>
             <div class="qcm-grid">
-                <label><input type="checkbox" name="qcm[]" value="C1"> Faux</label>
-                <label><input type="checkbox" name="qcm[]" value="C2"> Vrai</label>
-                <label><input type="checkbox" name="qcm[]" value="C3"> Vrai</label>
-                <label><input type="checkbox" name="qcm[]" value="C4"> Faux</label>
+                <label><input type="checkbox" name="qcm[]" value="C1">A. Sécurité</label>
+                <label><input type="checkbox" name="qcm[]" value="C2">B. Performance</label>
+                <label><input type="checkbox" name="qcm[]" value="C3">C. Inclusion</label>
+                <label><input type="checkbox" name="qcm[]" value="C4">D. Compétitivité</label>
             </div>
         </div>
         <div class="qcm-block">
-            <div class="qcm-title">Question D : Indiquez les réponses correctes</div>
+            <div class="qcm-title">La « fracture numérique » concerne principalement :</div>
             <div class="qcm-grid">
-                <label><input type="checkbox" name="qcm[]" value="D1"> Faux</label>
-                <label><input type="checkbox" name="qcm[]" value="D2"> Vrai</label>
-                <label><input type="checkbox" name="qcm[]" value="D3"> Vrai</label>
-                <label><input type="checkbox" name="qcm[]" value="D4"> Faux</label>
+                <label><input type="checkbox" name="qcm[]" value="D1">A. Les réseaux sociaux</label>
+                <label><input type="checkbox" name="qcm[]" value="D2">B. L’accès équitable aux outils numériques</label>
+                <label><input type="checkbox" name="qcm[]" value="D3">C. Les notes des élèves</label>
+                <label><input type="checkbox" name="qcm[]" value="D4">D. Les outils de surveillance</label>
             </div>
         </div>
         <input type="submit" value="Valider">
