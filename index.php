@@ -1,11 +1,11 @@
 <?php
-session_start();
 session_abort();
+session_start();
 // Initialisation des défis
 if (!isset($_SESSION['defis'])) {
     $_SESSION['defis'] = [1 => false, 2 => false, 3 => false, 4 => false];
 }
-$defis_done = &$_SESSION['defis'];
+$defis_done = $_SESSION['defis'];
 
 // Configuration des cartes
 $cards = [
