@@ -1,6 +1,6 @@
 <?php
 session_start();
-// session_abort();
+session_abort();
 // Initialisation des défis
 if (!isset($_SESSION['defis'])) {
     $_SESSION['defis'] = [1 => false, 2 => false, 3 => false, 4 => false];
@@ -12,7 +12,7 @@ $cards = [
     ['id' => 1, 'title' => 'Défi Logique', 'subtitle' => ($defis_done[1] ? "Terminé" : "À faire"), 'back' => 'Résolvez l\'énigme mathématique.', 'is_done' => $defis_done[1]],
     ['id' => 2, 'title' => 'Défi Code', 'subtitle' => ($defis_done[2] ? "Terminé" : "À faire"), 'back' => 'Trouvez l\'erreur de syntaxe.', 'is_done' => $defis_done[2]],
     ['id' => 3, 'title' => 'Défi Design', 'subtitle' => ($defis_done[3] ? "Terminé" : "À faire"), 'back' => "Les collectivités prolongent la vie des équipements et réduisent les déchets numériques. Elles assurent un accès équitable aux outils pour tous les élèves. Linux et les logiciels libres renforcent la souveraineté numérique. Les élèves participent activement à une transformation numérique responsable. Distribution recommandée : PrimTux (primaire), Linux NIRD (secondaire)", 'is_done' => $defis_done[3]],
-    ['id' => 4, 'title' => 'Défi Hacker', 'subtitle' => ($defis_done[4] ? "Terminé" : "À faire"), 'back' => 'Mot de passe caché trouvé.', 'is_done' => $defis_done[4]],
+    ['id' => 4, 'title' => 'Défi Hacker', 'subtitle' => ($defis_done[4] ? "Terminé" : "À faire"), 'back' => 'Le reconditionnement remet en état des ordinateurs usagés en effaçant les données et testant les composants, il développe compétences, autonomie et esprit d’équipe tout en valorisant tous les profils, il sensibilise à l’éthique, à la citoyenneté numérique et au réemploi, il mobilise la communauté éducative et des partenaires, et il promeut le développement durable et la redistribution solidaire du matériel.', 'is_done' => $defis_done[4]],
 ];
 ?>
 
