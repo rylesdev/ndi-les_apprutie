@@ -1,4 +1,6 @@
+
 <?php
+session_start();
 $compteurjustes = 0; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
