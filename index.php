@@ -11,7 +11,7 @@ $defis_done = &$_SESSION['defis'];
 $cards = [
     ['id' => 1, 'title' => 'Défi Logique', 'subtitle' => ($defis_done[1] ? "Terminé" : "À faire"), 'back' => 'Résolvez l\'énigme mathématique.', 'is_done' => $defis_done[1]],
     ['id' => 2, 'title' => 'Défi Code', 'subtitle' => ($defis_done[2] ? "Terminé" : "À faire"), 'back' => 'Trouvez l\'erreur de syntaxe.', 'is_done' => $defis_done[2]],
-    ['id' => 3, 'title' => 'Défi Design', 'subtitle' => ($defis_done[3] ? "Terminé" : "À faire"), 'back' => 'Mauvaise couleur identifiée.', 'is_done' => $defis_done[3]],
+    ['id' => 3, 'title' => 'Défi Design', 'subtitle' => ($defis_done[3] ? "Terminé" : "À faire"), 'back' => "Les collectivités prolongent la vie des équipements et réduisent les déchets numériques. Elles assurent un accès équitable aux outils pour tous les élèves. Linux et les logiciels libres renforcent la souveraineté numérique. Les élèves participent activement à une transformation numérique responsable. Distribution recommandée : PrimTux (primaire), Linux NIRD (secondaire)", 'is_done' => $defis_done[3]],
     ['id' => 4, 'title' => 'Défi Hacker', 'subtitle' => ($defis_done[4] ? "Terminé" : "À faire"), 'back' => 'Mot de passe caché trouvé.', 'is_done' => $defis_done[4]],
 ];
 ?>
