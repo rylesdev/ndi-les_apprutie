@@ -192,3 +192,8 @@ figure figcaption {
   display: table;
   clear: both;
 }
+
+.button {
+    color : #5C8ECA;
+    text-align : center;
+}
