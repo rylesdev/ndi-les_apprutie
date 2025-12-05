@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $correct = ($reponse === $bonne_reponse);
     if ($correct) {
         $_SESSION['defis'][$defi_id] = true;
-        $message = 'bravo bonne reponse';
+        $message = 'BRAVO !!! Bonne reponse :)';
     } else {
         $message = 'mauvaise réponse';
     }
@@ -28,20 +28,89 @@ if ($_SESSION['defis'][$defi_id]) {
     <meta charset="utf-8">
     <title>Défi <?php echo $defi_id; ?> — QCM</title>
     <style>
-        body {
-            font-family: Arial;
-            margin: 20px;
-            background: #f5f5f5
-        }
+       body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #ffb6c1;
+    margin: 0;
+    padding: 40px 0;
+    text-align: center;
+}
 
-        .question {
-            font-weight: bold;
-            margin-bottom: 10px
-        }
 
-        input[type=submit] {
-            margin-top: 10px
-        }
+form br {
+    display: none;
+}
+
+
+form {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;            
+    width: 500px;          
+    margin: 0 auto;        
+    padding: 20px;
+}
+
+
+form label {
+    background: rgba(255,182,193,0.15);
+    padding: 25px;         
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-size: 22px;       
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s;
+    min-height: 80px;      
+}
+
+
+form label:hover {
+    background: rgba(255,182,193,0.25);
+    transform: scale(1.03);
+}
+
+
+form label:has(input:checked) {
+    background: rgba(255,255,255,0.25);
+    border-color: white;
+    box-shadow: 0 0 18px white;
+    transform: scale(1.07);
+}
+
+
+form input[type=checkbox] {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+
+input[type=submit] {
+    grid-column: span 2;
+    background-color: #34d399;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.2s;
+    margin-top: 10px;
+}
+
+input[type=submit]:hover {
+    opacity: 0.85;
+    transform: scale(1.03);
+}
+
+
+
+
+
     </style>
 </head>
 
